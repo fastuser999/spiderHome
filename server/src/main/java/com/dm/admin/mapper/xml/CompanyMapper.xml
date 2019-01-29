@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dm.admin.mapper.CompanyMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.dm.admin.entity.Company">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="industry" property="industry" />
+		<result column="person" property="person" />
+		<result column="website" property="website" />
+		<result column="location" property="location" />
+		<result column="description" property="description" />
+		<result column="wages" property="wages" />
+		<result column="score" property="score" />
+		<result column="outid" property="outid" />
+	</resultMap>
+</mapper>

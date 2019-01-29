@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dm.admin.mapper.CommentMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.dm.admin.entity.Comment">
+		<id column="id" property="id" />
+		<result column="outid" property="outid" />
+		<result column="staff" property="staff" />
+		<result column="start" property="start" />
+		<result column="comment" property="comment" />
+		<result column="date" property="date" />
+		<result column="support" property="support" />
+	</resultMap>
+
+	<select id="findByOutid" resultType="com.dm.admin.entity.Comment">
+		SELECT * from comment where outid=#{arg0}
+	</select>
+</mapper>
