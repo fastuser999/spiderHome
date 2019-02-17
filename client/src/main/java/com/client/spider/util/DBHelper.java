@@ -25,14 +25,13 @@ public class DBHelper {
 	}
 
 	public int executeNonQuery(String sql) {
-		//logger.info("executeNonQuery: " + sql);
+		logger.info("executeNonQuery: " + sql);
 		PreparedStatement pst = null;
 		try {
 			pst = conn.prepareStatement(sql);
 			return pst.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			logger.error(e.getMessage(), e);
 		}
 		return 0;

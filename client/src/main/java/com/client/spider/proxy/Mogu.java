@@ -44,6 +44,13 @@ public class Mogu {
 		startVpnGetter();
 	}
 	
+	public Proxy getProxy() {
+        ProxyInfo info = popOneProxy();
+        InetSocketAddress addr = new InetSocketAddress(info.ip, info.port);
+		Proxy proxy = new Proxy(Proxy.Type.HTTP, addr);
+		return proxy;
+	}
+	
 	public class ProxyInfo {
 		public String ip;
 		public int port;
@@ -55,45 +62,13 @@ public class Mogu {
 			this.port = port;
 			startTime = (new Date()).getTime();
 		}
-
-		public Proxy getProxy() {
-			InetSocketAddress addr = new InetSocketAddress(ip, port);
-			Proxy proxy = new Proxy(Proxy.Type.HTTP, addr);
-			return proxy;
-		}
 		
 //		public void setInvalid() {
 //			valid.set(0);
 //		}
 	}
-
-	public void invalidProxy(ProxyInfo info) {
-		synchronized (vpnLock) {
-			vpn.remove(info);
-			vpn.add(info);
-		}
-	}
-
-	public ProxyInfo getProxyInfo() {
-		while (true) {
-			synchronized(vpnLock) {
-				if (vpn.size() > 0) {
-					ProxyInfo proxy = vpn.get(0);
-					return proxy;
-				}
-			}
-
-			logger.info("no vpn yet");
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-
-	private ProxyInfo getProxy2() {
+	
+	private ProxyInfo popOneProxy() {
 		while (true) {
 			synchronized(vpnLock) {
 				if (vpn.size() > 0) {

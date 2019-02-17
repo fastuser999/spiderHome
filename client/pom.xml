@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.dimu</groupId>
-	<artifactId>qchacha</artifactId>
+	<artifactId>spider</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
 	<packaging>jar</packaging>
 
-	<name>qchacha</name>
+	<name>spider</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
@@ -130,7 +130,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>com.client.spider.entry.TestQPS</mainClass>
+							<mainClass>com.client.spider.entry.KeywordsMode</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

@@ -55,14 +55,13 @@ public class qichachaSearch {
     	List<CompanyEntity> cList = new LinkedList<CompanyEntity>();
     	MySQLStorage storage = MySQLStorage.Instance();
     	storage.initId(id);
-		//Mogu.ProxyInfo proxyInfo = Mogu.instance().getProxyInfo();
     	
         try {
     		con = HttpConnection.connect(ROOT + URLEncoder.encode(keywords, "UTF-8"));
     		this.setHeader(con);
     		//InetSocketAddress addr = new InetSocketAddress(proxyInfo.ip, proxyInfo.port);
     		//Proxy proxy = new Proxy(Proxy.Type.HTTP, addr);
-    		//con.proxy(proxyInfo.getProxy());
+    		//con.proxy(Mogu.instance().getProxy());
             
 			Document doc = con.get();
 			Elements links = doc.select("a[href]");
@@ -96,7 +95,7 @@ public class qichachaSearch {
 		} catch (Exception e) {
 			logger.error("read qichacha err:" + e.getMessage());
 			storage.failedId(id, e.getMessage());
-			//Mogu.instance().invalidProxy(proxyInfo);
+			//proxyInfo.setInvalid();
 			return false;
 			
 //			if (con != null && con.response().statusCode() != 200) {

@@ -29,28 +29,28 @@ public class KeywordsMode {
         mode.runThreads();
     }
 
-    private int thread_cnt = 200;
+    private int thread_cnt = 0;
     private ExecutorService executorService = null;
     public AtomicInteger total = new AtomicInteger(0);
     public AtomicInteger used = new AtomicInteger(0);
 
     public KeywordsMode() {
-        thread_cnt = PropertiesReader.instance().getOrDefault("thread.cnt", 200);
+        thread_cnt = 3000;//PropertiesReader.instance().getOrDefault("thread.cnt", 200);
         executorService = Executors.newFixedThreadPool(thread_cnt);
     }
 
     public void runThreads() {
         while (true) {
-            JSONObject ret = getIds();
+            //JSONObject ret = getIds();
             
             try {
-            	if (ret == null) {
-            		Thread.sleep(2000);
-                	continue;
-                }
+//            	if (ret == null) {
+//            		Thread.sleep(2000);
+//                	continue;
+//                }
             	
-                long start = Long.parseLong(ret.get("start").toString());
-                long end = Long.parseLong(ret.get("end").toString());
+                long start = 44281;//Long.parseLong(ret.get("start").toString());
+                long end = 47000;//Long.parseLong(ret.get("end").toString());
                 total.addAndGet((int)(end - start));
                 for (long i = start; i < end; ++i) {
                     executorService.execute(new Task(i));
